@@ -7,292 +7,99 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-  :root{--gold:#C9A84C;--black:#0A0A0A;--dark:#111111;--dark2:#1A1A1A;--dark3:#222;--white:#F8F5EE;--white-dim:rgba(248,245,238,0.65);}
-  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.8;min-height:100vh;}
-  a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 60px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,10,0.95);border-bottom:1px solid rgba(201,168,76,0.1);backdrop-filter:blur(10px);}
-  .logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;letter-spacing:0.25em;color:var(--gold);text-decoration:none;}
-  .logo span{color:var(--white);}
-  .back-link{font-size:12px;letter-spacing:0.1em;color:var(--white-dim);text-decoration:none;transition:color 0.3s;}
-  .back-link:hover{color:var(--gold);}
-
-  .hero-bar{margin-top:72px;padding:80px 0 60px;border-bottom:1px solid rgba(201,168,76,0.1);text-align:center;background:linear-gradient(to bottom,rgba(255,60,60,0.03),transparent);}
-  .doc-tag{font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
-  .hero-bar h1{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,72px);font-weight:300;line-height:1;}
-  .hero-bar h1 em{font-style:italic;color:var(--gold);}
-  .meta{margin-top:20px;font-size:13px;color:var(--white-dim);}
-
-  .main-wrap{max-width:800px;margin:0 auto;padding:80px 40px 120px;}
-
-  .intro-box{
-    background:rgba(201,168,76,0.04);
-    border:1px solid rgba(201,168,76,0.15);
-    border-left:3px solid var(--gold);
-    padding:28px 32px;margin-bottom:60px;
-    font-size:14px;line-height:1.9;color:var(--white-dim);
-  }
-  .intro-box strong{color:var(--white);}
-
-  .section{margin-bottom:56px;}
-  .section h2{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid rgba(201,168,76,0.12);display:flex;align-items:center;gap:12px;}
-  .section h2 span{font-size:14px;color:var(--gold);}
-  .section p{font-size:14px;line-height:1.9;color:var(--white-dim);margin-bottom:14px;}
-  .section ul{list-style:none;margin:14px 0 20px;}
-  .section ul li{font-size:14px;line-height:1.8;color:var(--white-dim);padding:8px 0 8px 20px;border-bottom:1px solid rgba(201,168,76,0.05);position:relative;}
-  .section ul li::before{content:'✦';color:var(--gold);font-size:9px;position:absolute;left:0;top:12px;}
-
-  /* Steps */
-  .steps{display:flex;flex-direction:column;gap:4px;margin:24px 0;}
-  .step-row{
-    display:grid;grid-template-columns:48px 1fr;gap:24px;align-items:start;
-    background:var(--dark);border:1px solid rgba(201,168,76,0.08);
-    padding:24px;transition:border-color 0.3s;
-  }
-  .step-row:hover{border-color:rgba(201,168,76,0.2);}
-  .step-num{
-    width:40px;height:40px;border-radius:50%;
-    border:1px solid var(--gold);
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);
-    flex-shrink:0;
-  }
-  .step-content h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:6px;}
-  .step-content p{font-size:13px;line-height:1.7;color:var(--white-dim);margin:0;}
-  .step-content a{color:var(--gold);}
-
-  /* Form */
-  .form-card{background:var(--dark2);border:1px solid rgba(201,168,76,0.15);padding:48px;}
-  .form-card h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;margin-bottom:8px;}
-  .form-card .subtitle{font-size:13px;color:var(--white-dim);margin-bottom:36px;}
-
-  .form-group{margin-bottom:24px;}
-  label{display:block;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-  input,select,textarea{
-    width:100%;background:var(--dark3);
-    border:1px solid rgba(201,168,76,0.15);
-    color:var(--white);padding:14px 18px;
-    font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;
-    outline:none;transition:border-color 0.3s;
-    appearance:none;
-  }
-  input:focus,select:focus,textarea:focus{border-color:var(--gold);}
-  input::placeholder,textarea::placeholder{color:rgba(248,245,238,0.2);}
-  select option{background:var(--dark3);}
-  textarea{resize:vertical;min-height:100px;}
-
-  .checkbox-row{display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(255,60,60,0.04);border:1px solid rgba(255,60,60,0.15);margin-bottom:24px;}
-  .checkbox-row input[type=checkbox]{width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--gold);}
-  .checkbox-row label{font-size:13px;line-height:1.7;color:var(--white-dim);text-transform:none;letter-spacing:normal;margin:0;}
-
-  .btn-submit{
-    width:100%;background:var(--gold);color:var(--black);
-    padding:16px;font-size:13px;letter-spacing:0.15em;
-    text-transform:uppercase;font-weight:500;border:none;cursor:pointer;
-    transition:all 0.3s;font-family:'DM Sans',sans-serif;
-  }
-  .btn-submit:hover{background:#E8C97A;transform:translateY(-1px);}
-  .btn-submit:disabled{background:rgba(201,168,76,0.3);color:rgba(0,0,0,0.4);transform:none;cursor:not-allowed;}
-
-  .success-msg{
-    display:none;
-    background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.3);
-    padding:24px;text-align:center;
-    font-size:14px;color:var(--white-dim);margin-top:20px;
-  }
-  .success-msg .icon{font-size:32px;margin-bottom:12px;}
-  .success-msg strong{color:var(--white);}
-
-  .warning-card{
-    background:rgba(255,80,80,0.04);
-    border:1px solid rgba(255,80,80,0.15);
-    border-left:3px solid #ff5050;
-    padding:20px 24px;margin-bottom:24px;
-    font-size:13px;line-height:1.8;color:var(--white-dim);
-  }
-
-  .retention-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;}
-  .retention-table th{background:rgba(201,168,76,0.08);color:var(--gold);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;padding:12px 16px;text-align:left;border:1px solid rgba(201,168,76,0.1);}
-  .retention-table td{padding:12px 16px;border:1px solid rgba(201,168,76,0.06);color:var(--white-dim);vertical-align:top;}
-  .retention-table tr:nth-child(even) td{background:rgba(201,168,76,0.02);}
-
-  footer{background:var(--dark);border-top:1px solid rgba(201,168,76,0.1);padding:40px 60px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(248,245,238,0.3);}
-  @media(max-width:700px){nav{padding:16px 24px;}.main-wrap{padding:40px 20px 80px;}.form-card{padding:28px 20px;}footer{flex-direction:column;gap:10px;text-align:center;padding:30px 20px;}}
+:root{--gold:#C9A84C;--black:#0A0A0A;--dark:#111111;--dark2:#1A1A1A;--white:#F8F5EE;--white-dim:rgba(248,245,238,0.65);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.8;}
+a{color:var(--gold);text-decoration:none;}
+nav{position:fixed;top:0;left:0;right:0;padding:22px 60px;background:rgba(10,10,10,0.95);border-bottom:1px solid rgba(201,168,76,0.1);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:26px;letter-spacing:0.25em;color:var(--gold);}
+.hero{margin-top:90px;text-align:center;padding:80px 20px;border-bottom:1px solid rgba(201,168,76,0.1);}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;}
+.hero em{color:var(--gold);}
+.main{max-width:800px;margin:0 auto;padding:80px 30px;}
+.box{background:rgba(201,168,76,0.04);border-left:3px solid var(--gold);padding:28px;margin-bottom:40px;color:var(--white-dim);}
+.section{margin-bottom:48px;}
+.section h2{font-family:'Cormorant Garamond',serif;font-size:28px;margin-bottom:16px;}
+.section p{font-size:14px;color:var(--white-dim);}
+ul{list-style:none;margin-top:16px;}
+ul li{padding:8px 0 8px 18px;position:relative;color:var(--white-dim);}
+ul li::before{content:'✦';position:absolute;left:0;color:var(--gold);}
+.highlight{background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.3);padding:24px;margin:30px 0;font-size:15px;}
+footer{border-top:1px solid rgba(201,168,76,0.1);padding:40px;text-align:center;font-size:12px;color:rgba(248,245,238,0.35);}
 </style>
 </head>
+
 <body>
+
 <nav>
-  <a class="logo" href="index.html">Vin<span>kasa</span></a>
-  <a class="back-link" href="index.html">← Back to Home</a>
+  <span class="logo">Vin<span style="color:#fff">kasa</span></span>
 </nav>
 
-<div class="hero-bar">
-  <div class="doc-tag">Your Rights</div>
+<div class="hero">
   <h1>Data <em>Deletion</em></h1>
-  <p class="meta">Request permanent removal of your personal data from Vinkasa</p>
+  <p style="margin-top:14px;color:var(--white-dim)">How to permanently delete your data from Vinkasa</p>
 </div>
 
-<div class="main-wrap">
+<div class="main">
 
-  <div class="intro-box">
-    <strong>You have the right to be forgotten.</strong> Under the Digital Personal Data Protection Act, 2023 (DPDPA) and our commitment to your privacy, you may request the deletion of your personal data from Vinkasa at any time. We will process your request within <strong>30 days</strong>.
+  <div class="box">
+    <strong>Your right to data deletion.</strong><br/>
+    Under the Digital Personal Data Protection Act, 2023 (India), you may request deletion of your personal data stored with Vinkasa at any time.
   </div>
 
   <div class="section">
-    <h2><span>01</span> What Gets Deleted</h2>
-    <p>When your deletion request is processed, the following data will be permanently removed:</p>
+    <h2>What data will be deleted</h2>
     <ul>
-      <li>Your full name and WhatsApp phone number</li>
-      <li>Your work preferences and preferred cities</li>
-      <li>Your resume file stored on our servers (Cloudflare R2)</li>
+      <li>Your name and WhatsApp number</li>
+      <li>Your resume and candidate details</li>
+      <li>Your job preferences and profile data</li>
       <li>Your conversation session history</li>
-      <li>Your profile visibility settings</li>
-      <li>All data shared with your profile entry</li>
     </ul>
-    <div class="warning-card">
-      <strong>⚠️ Note on Payment Records:</strong> Transaction IDs and payment confirmation records (not card/UPI details) may be retained for up to <strong>7 years</strong> as required by Indian financial and tax laws (GST Act, Income Tax Act). These records do not contain your name or contact details beyond what was submitted to PhonePe.
-    </div>
   </div>
 
   <div class="section">
-    <h2><span>02</span> How to Request Deletion</h2>
-    <p>You can request deletion through any of the following methods:</p>
-    <div class="steps">
-      <div class="step-row">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <h4>Fill the form below</h4>
-          <p>Complete the Data Deletion Request form on this page. We will contact you on the email provided to confirm the request before processing.</p>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <h4>Email us directly</h4>
-          <p>Send an email to <a href="mailto:ajarun2786@gmail.com">ajarun2786@gmail.com</a> with the subject line <strong>"Data Deletion Request"</strong> and include your registered WhatsApp phone number.</p>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <h4>WhatsApp us</h4>
-          <p>Message us on WhatsApp at <a href="https://wa.me/15556395497" target="_blank">our bot number</a> with the message: <strong>"Delete my data"</strong>. We will confirm and process within 30 days.</p>
-        </div>
-      </div>
+    <h2>How to delete your data</h2>
+    <p>
+      Data deletion is handled <strong>only through our WhatsApp bot</strong>.
+      There is no website form or email-based deletion process.
+    </p>
+
+    <div class="highlight">
+      👉 Send the message <strong>“delete my data”</strong><br/>
+      to the same WhatsApp bot where you submitted your details.
     </div>
+
+    <p>
+      Once the command is received, your request will be verified and your data
+      will be permanently deleted within <strong>30 days</strong>.
+    </p>
   </div>
 
   <div class="section">
-    <h2><span>03</span> Data Retention Schedule</h2>
-    <table class="retention-table">
-      <thead>
-        <tr><th>Data Type</th><th>Retained Until</th><th>Reason</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Profile & Resume</td><td>Deleted within 30 days of request</td><td>No longer needed after deletion</td></tr>
-        <tr><td>Session data</td><td>Deleted within 30 days of request</td><td>No longer needed after deletion</td></tr>
-        <tr><td>Payment transaction ID</td><td>Up to 7 years</td><td>Required by Indian tax law</td></tr>
-        <tr><td>WhatsApp message logs</td><td>Per Meta/WhatsApp policy</td><td>Governed by Meta's data policy</td></tr>
-      </tbody>
-    </table>
+    <h2>Important notes</h2>
+    <ul>
+      <li>Deletion requests must be sent from your registered WhatsApp number</li>
+      <li>This action is permanent and cannot be reversed</li>
+      <li>Some anonymized transaction records may be retained if required by law</li>
+    </ul>
   </div>
 
   <div class="section">
-    <h2><span>04</span> Deletion Request Form</h2>
-    <div class="form-card">
-      <h3>Submit Your Request</h3>
-      <p class="subtitle">All fields are required. We will confirm via email within 2 business days.</p>
-
-      <form id="deleteForm" onsubmit="handleSubmit(event)">
-        <div class="form-group">
-          <label for="fullname">Full Name</label>
-          <input type="text" id="fullname" placeholder="As registered on Vinkasa" required/>
-        </div>
-        <div class="form-group">
-          <label for="phone">Registered WhatsApp Number</label>
-          <input type="tel" id="phone" placeholder="+91 9XXXXXXXXX" required/>
-        </div>
-        <div class="form-group">
-          <label for="email">Your Email Address</label>
-          <input type="email" id="email" placeholder="For confirmation" required/>
-        </div>
-        <div class="form-group">
-          <label for="reason">Reason for Deletion (Optional)</label>
-          <select id="reason">
-            <option value="">Select a reason</option>
-            <option>No longer job seeking</option>
-            <option>Privacy concerns</option>
-            <option>Found a job</option>
-            <option>Dissatisfied with service</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="notes">Additional Notes (Optional)</label>
-          <textarea id="notes" placeholder="Any additional information..."></textarea>
-        </div>
-
-        <div class="checkbox-row">
-          <input type="checkbox" id="confirm" required/>
-          <label for="confirm">I understand that this action is <strong>permanent and irreversible</strong>. All my profile data, resume, and preferences will be deleted. I confirm I am the registered owner of the WhatsApp number provided.</label>
-        </div>
-
-        <button type="submit" class="btn-submit" id="submitBtn">Submit Deletion Request</button>
-      </form>
-
-      <div class="success-msg" id="successMsg">
-        <div class="icon">✅</div>
-        <strong>Request Submitted Successfully</strong>
-        <p style="margin-top:10px">We have received your data deletion request. We will contact you at the email provided within 2 business days to confirm, and your data will be fully deleted within <strong>30 days</strong>.</p>
-        <p style="margin-top:10px;font-size:12px;">If you have questions, email us at <a href="mailto:ajarun2786@gmail.com">ajarun2786@gmail.com</a></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2><span>05</span> Contact</h2>
-    <p>For any questions about data deletion or your privacy rights:</p>
-    <div style="background:var(--dark2);border:1px solid rgba(201,168,76,0.2);padding:28px;margin-top:12px;">
-      <p style="font-size:14px;margin-bottom:6px;"><strong style="color:var(--white)">Arun Jangir</strong> — Data Controller</p>
-      <p style="font-size:14px;margin-bottom:6px;color:var(--white-dim)">Vinkasa, Alwar, Rajasthan, India</p>
-      <p style="font-size:14px;color:var(--white-dim)">Email: <a href="mailto:ajarun2786@gmail.com">ajarun2786@gmail.com</a></p>
-      <p style="font-size:13px;margin-top:12px;color:rgba(248,245,238,0.35);">Response time: within 2 business days for acknowledgement, 30 days for completion.</p>
-    </div>
+    <h2>Need help?</h2>
+    <p>
+      If you face any issue with the deletion command or have questions about your privacy,
+      you may contact us at:
+    </p>
+    <p style="margin-top:10px">
+      📧 <a href="mailto:ajarun2786@gmail.com">ajarun2786@gmail.com</a>
+    </p>
   </div>
 
 </div>
 
 <footer>
-  <span>© 2025 Vinkasa. All rights reserved. Proprietor: Arun Jangir, Alwar, Rajasthan.</span>
-  <span><a href="index.html">Home</a> &nbsp;·&nbsp; <a href="terms.html">Terms</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy</a></span>
+  © 2025 Vinkasa — Proprietor: Arun Jangir, Alwar, Rajasthan, India
 </footer>
 
-<script>
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.textContent = 'Submitting...';
-
-  // Build mailto link as fallback (no backend needed)
-  const name  = document.getElementById('fullname').value;
-  const phone = document.getElementById('phone').value;
-  const email = document.getElementById('email').value;
-  const reason = document.getElementById('reason').value;
-  const notes = document.getElementById('notes').value;
-
-  const subject = encodeURIComponent('Data Deletion Request — Vinkasa');
-  const body = encodeURIComponent(
-    `Data Deletion Request\n\nFull Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nReason: ${reason || 'Not specified'}\nNotes: ${notes || 'None'}\n\nI confirm this request is genuine and I am the registered user.`
-  );
-
-  // Small delay for UX, then open email client
-  setTimeout(() => {
-    window.location.href = `mailto:ajarun2786@gmail.com?subject=${subject}&body=${body}`;
-    document.getElementById('deleteForm').style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
-  }, 800);
-}
-</script>
 </body>
 </html>
