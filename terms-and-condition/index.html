@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms & Conditions — Vinkasa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --gold: #C9A84C; --gold-light: #E8C97A;
+    --black: #0A0A0A; --dark: #111111; --dark2: #1A1A1A;
+    --white: #F8F5EE; --white-dim: rgba(248,245,238,0.65);
+    --white-faint: rgba(248,245,238,0.06);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.8;}
+  a{color:var(--gold);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:22px 60px;
+    display:flex;align-items:center;justify-content:space-between;
+    background:rgba(10,10,10,0.95);
+    border-bottom:1px solid rgba(201,168,76,0.1);
+    backdrop-filter:blur(10px);
+  }
+  .logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;letter-spacing:0.25em;color:var(--gold);text-decoration:none;}
+  .logo span{color:var(--white);}
+  .back-link{font-size:12px;letter-spacing:0.1em;color:var(--white-dim);display:flex;align-items:center;gap:8px;text-decoration:none;transition:color 0.3s;}
+  .back-link:hover{color:var(--gold);text-decoration:none;}
+
+  .hero-bar{
+    margin-top:72px;
+    padding:80px 0 60px;
+    border-bottom:1px solid rgba(201,168,76,0.1);
+    text-align:center;
+    background:linear-gradient(to bottom,rgba(201,168,76,0.04),transparent);
+  }
+  .doc-tag{font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .hero-bar h1{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,72px);font-weight:300;line-height:1;}
+  .hero-bar h1 em{font-style:italic;color:var(--gold);}
+  .meta{margin-top:20px;font-size:13px;color:var(--white-dim);}
+
+  .layout{display:grid;grid-template-columns:260px 1fr;gap:0;max-width:1200px;margin:0 auto;padding:0;}
+
+  .toc{
+    padding:60px 40px 60px 60px;
+    position:sticky;top:72px;height:calc(100vh - 72px);
+    overflow-y:auto;border-right:1px solid rgba(201,168,76,0.08);
+  }
+  .toc h3{font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+  .toc ul{list-style:none;}
+  .toc ul li{margin-bottom:4px;}
+  .toc ul li a{
+    font-size:13px;color:var(--white-dim);text-decoration:none;
+    display:block;padding:6px 0;border-left:2px solid transparent;
+    padding-left:12px;transition:all 0.2s;
+  }
+  .toc ul li a:hover{color:var(--gold);border-left-color:var(--gold);}
+
+  .content{padding:60px 80px 100px 80px;}
+
+  .section-block{margin-bottom:56px;}
+  .section-block h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;font-weight:400;
+    color:var(--white);margin-bottom:20px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(201,168,76,0.12);
+    display:flex;align-items:center;gap:12px;
+  }
+  .section-block h2 span{font-size:14px;color:var(--gold);}
+  .section-block p{font-size:14px;line-height:1.9;color:var(--white-dim);margin-bottom:14px;}
+  .section-block ul{list-style:none;margin:16px 0 20px 0;}
+  .section-block ul li{
+    font-size:14px;line-height:1.8;color:var(--white-dim);
+    padding:8px 0 8px 20px;
+    border-bottom:1px solid rgba(201,168,76,0.05);
+    position:relative;
+  }
+  .section-block ul li::before{
+    content:'✦';color:var(--gold);font-size:9px;
+    position:absolute;left:0;top:12px;
+  }
+
+  .highlight-box{
+    background:rgba(201,168,76,0.05);
+    border:1px solid rgba(201,168,76,0.2);
+    border-left:3px solid var(--gold);
+    padding:20px 24px;margin:20px 0;
+    font-size:14px;line-height:1.8;color:var(--white-dim);
+  }
+  .highlight-box strong{color:var(--white);}
+
+  .warning-box{
+    background:rgba(255,80,80,0.05);
+    border:1px solid rgba(255,80,80,0.2);
+    border-left:3px solid #ff5050;
+    padding:20px 24px;margin:20px 0;
+    font-size:14px;line-height:1.8;color:var(--white-dim);
+  }
+
+  .contact-card{
+    background:var(--dark2);border:1px solid rgba(201,168,76,0.2);
+    padding:32px;margin-top:16px;
+  }
+  .contact-card p{margin-bottom:6px;font-size:14px;}
+  .contact-card strong{color:var(--white);}
+
+  footer{
+    background:var(--dark);border-top:1px solid rgba(201,168,76,0.1);
+    padding:40px 60px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:12px;color:rgba(248,245,238,0.3);
+  }
+
+  @media(max-width:900px){
+    nav{padding:16px 24px;}
+    .layout{grid-template-columns:1fr;}
+    .toc{display:none;}
+    .content{padding:40px 24px 80px;}
+    footer{flex-direction:column;gap:10px;text-align:center;padding:30px 24px;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Vin<span>kasa</span></a>
+  <a class="back-link" href="index.html">← Back to Home</a>
+</nav>
+
+<div class="hero-bar">
+  <div class="doc-tag">Legal Document</div>
+  <h1>Terms & <em>Conditions</em></h1>
+  <p class="meta">Last updated: January 2025 &nbsp;|&nbsp; Effective immediately upon use</p>
+</div>
+
+<div class="layout">
+  <aside class="toc">
+    <h3>Contents</h3>
+    <ul>
+      <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+      <li><a href="#platform">2. Platform Description</a></li>
+      <li><a href="#eligibility">3. Eligibility</a></li>
+      <li><a href="#account">4. Account & Profile</a></li>
+      <li><a href="#payment">5. Payment Terms</a></li>
+      <li><a href="#data">6. Data & Privacy</a></li>
+      <li><a href="#disclaimer">7. No Guarantee Disclaimer</a></li>
+      <li><a href="#prohibited">8. Prohibited Use</a></li>
+      <li><a href="#liability">9. Limitation of Liability</a></li>
+      <li><a href="#ip">10. Intellectual Property</a></li>
+      <li><a href="#termination">11. Termination</a></li>
+      <li><a href="#governing">12. Governing Law</a></li>
+      <li><a href="#changes">13. Changes to Terms</a></li>
+      <li><a href="#contact-section">14. Contact</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+
+    <div class="section-block">
+      <div class="highlight-box">
+        <strong>Please read these Terms & Conditions carefully.</strong> By using Vinkasa's WhatsApp bot or any associated services, you confirm that you have read, understood, and agree to be bound by these terms. If you do not agree, please discontinue use immediately.
+      </div>
+    </div>
+
+    <div class="section-block" id="acceptance">
+      <h2><span>01</span> Acceptance of Terms</h2>
+      <p>By accessing or using Vinkasa's services — including our WhatsApp bot, website, or any associated platform — you agree to be bound by these Terms and Conditions ("Terms"). These Terms constitute a legally binding agreement between you ("User") and Vinkasa ("Platform", "we", "us", or "our"), owned and operated by Arun Jangir, Alwar, Rajasthan, India.</p>
+      <p>Use of our platform implies full and unconditional acceptance of these Terms. If you are using this service on behalf of a third party, you represent that you have the authority to bind that party to these Terms.</p>
+    </div>
+
+    <div class="section-block" id="platform">
+      <h2><span>02</span> Platform Description</h2>
+      <p>Vinkasa is a WhatsApp-based job visibility platform designed to connect job seekers with HR professionals and recruitment agencies across India. Our service enables users to:</p>
+      <ul>
+        <li>Create and submit a professional profile via WhatsApp</li>
+        <li>Upload and manage their resume securely</li>
+        <li>Select preferred cities and work preferences</li>
+        <li>Control the visibility of their profile and resume</li>
+        <li>Be discovered by verified HRs and recruitment agencies</li>
+      </ul>
+      <div class="warning-box">
+        <strong>⚠️ Important:</strong> Vinkasa is strictly a <strong>visibility and discovery platform</strong>. We do not act as a recruiter, employer, or employment agency. We do not manage interviews, salary negotiations, or employment contracts.
+      </div>
+    </div>
+
+    <div class="section-block" id="eligibility">
+      <h2><span>03</span> Eligibility</h2>
+      <p>To use Vinkasa, you must:</p>
+      <ul>
+        <li>Be at least 18 years of age</li>
+        <li>Be a resident of India or seeking employment in India</li>
+        <li>Have a valid WhatsApp account on an active mobile number</li>
+        <li>Provide accurate, truthful, and complete information during registration</li>
+        <li>Not be barred from receiving services under applicable Indian law</li>
+      </ul>
+      <p>We reserve the right to refuse service to any user at our sole discretion.</p>
+    </div>
+
+    <div class="section-block" id="account">
+      <h2><span>04</span> Account & Profile</h2>
+      <p>Your profile is identified by your WhatsApp phone number. You are responsible for:</p>
+      <ul>
+        <li>The accuracy of all information provided, including name, work preferences, city preferences, and resume content</li>
+        <li>Ensuring your resume does not contain false, misleading, or fabricated information</li>
+        <li>Keeping your profile updated through the update feature</li>
+        <li>All activity associated with your WhatsApp number on our platform</li>
+      </ul>
+      <p>Vinkasa reserves the right to remove or suspend profiles that contain false information, inappropriate content, or violate these Terms.</p>
+    </div>
+
+    <div class="section-block" id="payment">
+      <h2><span>05</span> Payment Terms</h2>
+      <p>Vinkasa charges a one-time registration fee of <strong>₹19 (Indian Rupees Nineteen only)</strong> to activate your profile and make it visible to recruiters. Regarding payments:</p>
+      <ul>
+        <li>Payments are processed securely through PhonePe, a RBI-regulated payment gateway</li>
+        <li>The ₹19 fee is <strong>non-refundable</strong> under any circumstances, including if no job leads are received</li>
+        <li>Payment confirmation is automatic. If payment fails, your profile will not be activated</li>
+        <li>We do not store your card, UPI, or banking details — all payment data is handled exclusively by PhonePe</li>
+        <li>In case of a payment dispute, please contact us at ajarun2786@gmail.com with your transaction ID</li>
+      </ul>
+      <div class="highlight-box">
+        The ₹19 fee covers profile activation and visibility. It does <strong>not</strong> guarantee job placement, interviews, or any contact from recruiters.
+      </div>
+    </div>
+
+    <div class="section-block" id="data">
+      <h2><span>06</span> Data & Privacy</h2>
+      <p>By using Vinkasa, you explicitly consent to the following:</p>
+      <ul>
+        <li>Your profile information (name, phone number, work preference, cities, resume) will be stored on secure servers</li>
+        <li>Your profile details will be shared with verified HR professionals and third-party recruitment agencies for the purpose of job matching</li>
+        <li>Your resume may be made visible to recruiters if you choose the "Visible" privacy setting</li>
+        <li>We may use your data to improve our platform and matching algorithms</li>
+        <li>We will not sell your data to non-recruitment third parties or use it for spam marketing</li>
+      </ul>
+      <p>For full details, refer to our <a href="privacy.html">Privacy Policy</a>. You may request data deletion at any time via our <a href="delete.html">Data Deletion page</a>.</p>
+    </div>
+
+    <div class="section-block" id="disclaimer">
+      <h2><span>07</span> No Guarantee Disclaimer</h2>
+      <div class="warning-box">
+        <strong>Vinkasa does not guarantee employment, interviews, job placement, or any response from recruiters.</strong>
+      </div>
+      <p>Our platform increases the <em>visibility</em> of your profile to HR professionals and recruitment agencies. However:</p>
+      <ul>
+        <li>We cannot control whether recruiters view, contact, or hire you</li>
+        <li>Hiring decisions are made solely by the recruiter or employer</li>
+        <li>Job availability and recruitment activity vary by industry, city, and market conditions</li>
+        <li>Vinkasa is not responsible for the conduct, decisions, or communications of any recruiter or employer</li>
+        <li>We make no representation about the quality, legitimacy, or terms of any job opportunity that may arise</li>
+      </ul>
+      <p>Your career outcomes depend entirely on your qualifications, the market, and the decisions of third-party recruiters. Vinkasa simply puts your profile in the right place.</p>
+    </div>
+
+    <div class="section-block" id="prohibited">
+      <h2><span>08</span> Prohibited Use</h2>
+      <p>You agree NOT to use Vinkasa to:</p>
+      <ul>
+        <li>Submit false, misleading, or fabricated profile information or resume content</li>
+        <li>Impersonate another person or entity</li>
+        <li>Abuse, spam, or misuse the WhatsApp bot</li>
+        <li>Attempt to reverse-engineer, scrape, or exploit our platform</li>
+        <li>Use the platform for any illegal purpose under Indian law</li>
+        <li>Submit content that is defamatory, obscene, or offensive</li>
+        <li>Create multiple accounts to circumvent platform restrictions</li>
+      </ul>
+      <p>Violation of these provisions may result in immediate termination of your profile without refund and, where appropriate, reporting to law enforcement.</p>
+    </div>
+
+    <div class="section-block" id="liability">
+      <h2><span>09</span> Limitation of Liability</h2>
+      <p>To the maximum extent permitted under applicable Indian law, Vinkasa and its proprietor (Arun Jangir) shall not be liable for:</p>
+      <ul>
+        <li>Any direct, indirect, incidental, or consequential loss arising from use of the platform</li>
+        <li>Loss of employment opportunity, income, or career prospects</li>
+        <li>Actions, decisions, or misconduct of any recruiter or employer discovered through our platform</li>
+        <li>Technical failures, delays, or data loss</li>
+        <li>Unauthorized access to your data as a result of circumstances beyond our reasonable control</li>
+      </ul>
+      <p>Our total liability to you for any claim shall not exceed the amount paid by you to us (₹19).</p>
+    </div>
+
+    <div class="section-block" id="ip">
+      <h2><span>10</span> Intellectual Property</h2>
+      <p>All content on the Vinkasa platform — including but not limited to the website design, bot logic, brand name, logo, and written content — is the intellectual property of Vinkasa / Arun Jangir and is protected under applicable Indian intellectual property laws.</p>
+      <p>You retain ownership of your resume and profile content. By uploading it to Vinkasa, you grant us a limited, non-exclusive license to store, display, and share your content with recruiters as per your visibility settings.</p>
+    </div>
+
+    <div class="section-block" id="termination">
+      <h2><span>11</span> Termination</h2>
+      <p>We reserve the right to suspend or terminate your profile and access to our services at any time, with or without notice, for reasons including but not limited to:</p>
+      <ul>
+        <li>Violation of these Terms</li>
+        <li>Submission of false or harmful content</li>
+        <li>Abuse of the platform or other users</li>
+        <li>Inactivity for extended periods</li>
+      </ul>
+      <p>You may also request deactivation of your profile at any time by visiting our <a href="delete.html">Data Deletion page</a> or emailing us.</p>
+    </div>
+
+    <div class="section-block" id="governing">
+      <h2><span>12</span> Governing Law & Dispute Resolution</h2>
+      <p>These Terms are governed by and construed in accordance with the laws of India, specifically applicable laws of the State of Rajasthan. Any disputes arising from these Terms or your use of Vinkasa shall be subject to the exclusive jurisdiction of the courts of Alwar, Rajasthan, India.</p>
+      <p>We encourage users to first attempt resolution by contacting us at <a href="mailto:ajarun2786@gmail.com">ajarun2786@gmail.com</a> before initiating formal proceedings.</p>
+    </div>
+
+    <div class="section-block" id="changes">
+      <h2><span>13</span> Changes to Terms</h2>
+      <p>Vinkasa reserves the right to modify these Terms at any time. Changes will be posted on this page with an updated effective date. Continued use of our services after changes are posted constitutes your acceptance of the updated Terms.</p>
+      <p>We recommend reviewing this page periodically to stay informed of any updates.</p>
+    </div>
+
+    <div class="section-block" id="contact-section">
+      <h2><span>14</span> Contact Information</h2>
+      <p>For any questions, concerns, or requests regarding these Terms, please contact:</p>
+      <div class="contact-card">
+        <p><strong>Enterprise Name:</strong> Vinkasa</p>
+        <p><strong>Proprietor:</strong> Arun Jangir</p>
+        <p><strong>Location:</strong> Alwar, Rajasthan, India</p>
+        <p><strong>Email:</strong> <a href="mailto:ajarun2786@gmail.com">ajarun2786@gmail.com</a></p>
+        <p><strong>WhatsApp:</strong> <a href="https://wa.me/15556395497" target="_blank">Message us on WhatsApp</a></p>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <span>© 2025 Vinkasa. All rights reserved. Proprietor: Arun Jangir, Alwar, Rajasthan.</span>
+  <span><a href="index.html">Home</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="delete.html">Data Deletion</a></span>
+</footer>
+</body>
+</html>
