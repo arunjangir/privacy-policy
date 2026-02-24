@@ -1,126 +1,712 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Vinkasa | MSME Registered Enterprise</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vinkasa is a Micro Enterprise registered under Udyam, engaged in dairy manufacturing and employment placement services.">
-    
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f8;
-            color: #333;
-            line-height: 1.6;
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vinkasa — Your Career Visibility Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dark: #8B6914;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --dark2: #1A1A1A;
+    --dark3: #222222;
+    --white: #F8F5EE;
+    --white-dim: rgba(248,245,238,0.6);
+    --white-faint: rgba(248,245,238,0.08);
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
 
-        header {
-            background: #1e3a8a;
-            color: #fff;
-            padding: 40px 20px;
-            text-align: center;
-        }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
 
-        header h1 {
-            margin: 0;
-            font-size: 32px;
-        }
+  /* Custom cursor */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed; top:0; left:0;
+    pointer-events: none; z-index:9999;
+    transition: transform 0.15s ease;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    position: fixed; top:0; left:0;
+    pointer-events: none; z-index:9998;
+    transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+    opacity: 0.6;
+  }
 
-        header p {
-            margin-top: 10px;
-            font-size: 16px;
-        }
+  /* Nav */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index: 100;
+    padding: 28px 60px;
+    display: flex; align-items:center; justify-content:space-between;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 300;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .logo span { color: var(--white); }
+  .nav-links { display:flex; gap:40px; list-style:none; }
+  .nav-links a {
+    color: var(--white-dim);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 28px;
+    font-size: 12px; letter-spacing:0.15em;
+    text-transform: uppercase;
+    cursor: none;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--black); }
 
-        section {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 30px;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction:column;
+    justify-content: center; align-items: flex-start;
+    padding: 0 60px 0 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset:0; z-index:0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute; inset:0; z-index:0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 80% at center, black, transparent);
+  }
+  .hero-tag {
+    font-size:11px; letter-spacing:0.3em; text-transform:uppercase;
+    color: var(--gold); margin-bottom:32px;
+    display:flex; align-items:center; gap:12px;
+    opacity:0; animation: fadeUp 1s 0.2s forwards;
+  }
+  .hero-tag::before {
+    content:''; display:block; width:40px; height:1px; background:var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(64px, 8vw, 120px);
+    font-weight: 300; line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 36px;
+    opacity:0; animation: fadeUp 1.2s 0.4s forwards;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 16px; line-height: 1.8;
+    color: var(--white-dim);
+    max-width: 460px; margin-bottom: 56px;
+    opacity:0; animation: fadeUp 1s 0.7s forwards;
+  }
+  .hero-actions {
+    display:flex; gap:20px; align-items:center;
+    opacity:0; animation: fadeUp 1s 0.9s forwards;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    padding: 16px 44px;
+    font-size: 13px; letter-spacing:0.15em;
+    text-transform: uppercase; font-weight:500;
+    text-decoration: none; cursor:none;
+    transition: all 0.3s; border:none;
+    display:inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform:translateY(-2px); }
+  .btn-ghost {
+    color: var(--white-dim);
+    font-size: 13px; letter-spacing:0.12em;
+    text-decoration: none; cursor:none;
+    display:flex; align-items:center; gap:10px;
+    transition: color 0.3s;
+  }
+  .btn-ghost:hover { color: var(--gold); }
+  .btn-ghost::after {
+    content:'→'; transition: transform 0.3s;
+  }
+  .btn-ghost:hover::after { transform: translateX(4px); }
 
-        h2 {
-            color: #1e3a8a;
-            margin-top: 0;
-        }
+  .hero-number {
+    position: absolute; right:80px; bottom:80px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 200px; font-weight:300;
+    color: rgba(201,168,76,0.04);
+    line-height:1; user-select:none;
+    letter-spacing:-0.05em;
+  }
 
-        ul {
-            padding-left: 20px;
-        }
+  /* Marquee */
+  .marquee-wrap {
+    background: var(--gold);
+    padding: 14px 0; overflow:hidden;
+    white-space:nowrap;
+  }
+  .marquee-inner {
+    display:inline-flex; gap:0;
+    animation: marquee 25s linear infinite;
+  }
+  .marquee-inner span {
+    font-size:12px; letter-spacing:0.25em; text-transform:uppercase;
+    color: var(--black); font-weight:500;
+    padding: 0 40px;
+  }
+  .marquee-inner span::after {
+    content:'✦'; margin-left:40px; opacity:0.5;
+  }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #e5e7eb;
-            font-size: 14px;
-        }
+  /* Stats */
+  .stats {
+    padding: 100px 80px;
+    display:grid; grid-template-columns: repeat(4,1fr);
+    gap: 1px; background: rgba(201,168,76,0.1);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+  .stat {
+    background: var(--black);
+    padding: 60px 40px;
+    text-align:center;
+  }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px; font-weight:300;
+    color: var(--gold); line-height:1;
+    margin-bottom:12px;
+  }
+  .stat-label {
+    font-size:12px; letter-spacing:0.2em;
+    text-transform:uppercase; color: var(--white-dim);
+  }
 
-        .btn {
-            display: inline-block;
-            padding: 10px 18px;
-            background: #1e3a8a;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
+  /* How it works */
+  .section { padding: 120px 80px; }
+  .section-tag {
+    font-size:11px; letter-spacing:0.3em; text-transform:uppercase;
+    color: var(--gold); margin-bottom:20px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .section-tag::before { content:''; display:block; width:30px; height:1px; background:var(--gold); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 5vw, 72px);
+    font-weight: 300; line-height:1.05;
+    margin-bottom: 80px;
+  }
+  .section-title em { font-style:italic; color:var(--gold); }
 
-        .btn:hover {
-            background: #162d6a;
-        }
-    </style>
+  .steps {
+    display:grid; grid-template-columns: repeat(3,1fr);
+    gap: 2px; background: rgba(201,168,76,0.08);
+  }
+  .step {
+    background: var(--dark);
+    padding: 56px 44px;
+    position:relative; overflow:hidden;
+    transition: background 0.4s;
+  }
+  .step:hover { background: var(--dark2); }
+  .step::before {
+    content: attr(data-num);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px; font-weight:300;
+    color: rgba(201,168,76,0.06);
+    position:absolute; top:-10px; right:20px;
+    line-height:1;
+    transition: color 0.4s;
+  }
+  .step:hover::before { color: rgba(201,168,76,0.12); }
+  .step-icon {
+    font-size:28px; margin-bottom:24px;
+  }
+  .step h3 {
+    font-family:'Cormorant Garamond', serif;
+    font-size:26px; font-weight:400;
+    margin-bottom:16px; line-height:1.2;
+  }
+  .step p { font-size:14px; line-height:1.8; color:var(--white-dim); }
+
+  /* Features */
+  .features {
+    display:grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items:center;
+    padding: 120px 80px;
+  }
+  .features-visual {
+    position:relative; height:600px;
+  }
+  .phone-mock {
+    width:260px; height:520px;
+    background: var(--dark2);
+    border-radius: 40px;
+    border: 1px solid rgba(201,168,76,0.2);
+    position:absolute; left:50%; top:50%;
+    transform: translate(-50%,-50%);
+    overflow:hidden;
+    box-shadow:
+      0 40px 80px rgba(0,0,0,0.6),
+      0 0 0 1px rgba(201,168,76,0.1),
+      inset 0 1px 0 rgba(201,168,76,0.15);
+  }
+  .phone-top {
+    background: var(--dark3);
+    padding:16px 24px 12px;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+  }
+  .phone-wa {
+    display:flex; align-items:center; gap:10px;
+  }
+  .wa-avatar {
+    width:32px; height:32px; border-radius:50%;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px; color:var(--black); font-weight:600;
+    font-family:'Cormorant Garamond',serif;
+  }
+  .wa-name { font-size:13px; font-weight:500; color:var(--white); }
+  .wa-status { font-size:10px; color:#25D366; }
+  .phone-body { padding:16px; display:flex; flex-direction:column; gap:10px; }
+  .msg-in {
+    background: var(--dark3);
+    border-radius:0 16px 16px 16px;
+    padding:10px 14px; font-size:11px; line-height:1.6;
+    color: var(--white); max-width:85%;
+    border: 1px solid rgba(201,168,76,0.06);
+  }
+  .msg-out {
+    background: linear-gradient(135deg, rgba(201,168,76,0.25), rgba(201,168,76,0.15));
+    border-radius:16px 0 16px 16px;
+    padding:10px 14px; font-size:11px; line-height:1.6;
+    color: var(--white); max-width:85%; align-self:flex-end;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  .msg-btn {
+    background: var(--gold);
+    border-radius:8px;
+    padding:10px 14px; font-size:11px; font-weight:500;
+    color: var(--black); text-align:center; max-width:85%;
+    letter-spacing:0.05em;
+  }
+  .glow-ring {
+    position:absolute; border-radius:50%;
+    border:1px solid rgba(201,168,76,0.15);
+    animation: pulse 4s ease-in-out infinite;
+  }
+  .glow-ring:nth-child(1) { width:320px;height:320px; top:50%;left:50%; transform:translate(-50%,-50%); animation-delay:0s; }
+  .glow-ring:nth-child(2) { width:420px;height:420px; top:50%;left:50%; transform:translate(-50%,-50%); animation-delay:1s; }
+  .glow-ring:nth-child(3) { width:520px;height:520px; top:50%;left:50%; transform:translate(-50%,-50%); animation-delay:2s; }
+
+  .features-list { display:flex; flex-direction:column; gap:36px; }
+  .feature-item {
+    padding: 36px;
+    border: 1px solid rgba(201,168,76,0.1);
+    position:relative; overflow:hidden;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .feature-item:hover {
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.03);
+  }
+  .feature-item::before {
+    content:''; position:absolute;
+    top:0; left:0; width:3px; height:0;
+    background: var(--gold);
+    transition: height 0.4s;
+  }
+  .feature-item:hover::before { height:100%; }
+  .feature-icon { font-size:24px; margin-bottom:14px; }
+  .feature-item h3 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px; font-weight:400; margin-bottom:10px;
+  }
+  .feature-item p { font-size:14px; line-height:1.8; color:var(--white-dim); }
+
+  /* Pricing */
+  .pricing { padding:120px 80px; text-align:center; }
+  .price-card {
+    max-width:480px; margin:0 auto;
+    background: var(--dark);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding:70px 60px;
+    position:relative; overflow:hidden;
+  }
+  .price-card::before {
+    content:'';position:absolute;top:-1px;left:20%;right:20%;height:2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .price-badge {
+    display:inline-block;
+    background: var(--gold);
+    color: var(--black);
+    font-size:10px; letter-spacing:0.2em; text-transform:uppercase;
+    padding:6px 18px; margin-bottom:36px; font-weight:500;
+  }
+  .price-amount {
+    font-family:'Cormorant Garamond',serif;
+    font-size:96px; font-weight:300; color:var(--gold);
+    line-height:1; margin-bottom:4px;
+  }
+  .price-amount sup { font-size:36px; vertical-align:super; }
+  .price-note { font-size:13px; color:var(--white-dim); margin-bottom:48px; letter-spacing:0.05em; }
+  .price-features { list-style:none; margin-bottom:48px; text-align:left; }
+  .price-features li {
+    padding:14px 0; border-bottom:1px solid rgba(201,168,76,0.08);
+    font-size:14px; display:flex; align-items:center; gap:14px;
+    color:var(--white-dim);
+  }
+  .price-features li::before { content:'✦'; color:var(--gold); font-size:10px; }
+  .price-disclaimer {
+    font-size:12px; color:rgba(248,245,238,0.3);
+    line-height:1.8; margin-top:24px;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    margin:0 80px 120px;
+    background: linear-gradient(135deg, var(--dark2) 0%, var(--dark3) 100%);
+    border:1px solid rgba(201,168,76,0.15);
+    padding:100px 80px;
+    display:grid; grid-template-columns:1fr auto;
+    gap:60px; align-items:center;
+    position:relative; overflow:hidden;
+  }
+  .cta-section::before {
+    content:'';position:absolute;
+    right:-100px;top:-100px;
+    width:400px;height:400px;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,168,76,0.08),transparent 70%);
+  }
+  .cta-section h2 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(36px,4vw,56px);
+    font-weight:300; line-height:1.1;
+  }
+  .cta-section h2 em { font-style:italic; color:var(--gold); }
+  .cta-section p { font-size:15px; color:var(--white-dim); margin-top:16px; line-height:1.7; }
+
+  /* Footer */
+  footer {
+    border-top:1px solid rgba(201,168,76,0.1);
+    padding:60px 80px;
+    display:grid; grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:60px;
+  }
+  .footer-brand .logo { font-size:24px; display:block; margin-bottom:16px; }
+  .footer-brand p { font-size:13px; color:var(--white-dim); line-height:1.8; max-width:280px; }
+  .footer-col h4 {
+    font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:20px;
+  }
+  .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .footer-col ul a {
+    color:var(--white-dim); text-decoration:none; font-size:13px;
+    transition:color 0.3s;
+  }
+  .footer-col ul a:hover { color:var(--gold); }
+  .footer-bottom {
+    border-top:1px solid rgba(201,168,76,0.08);
+    padding:24px 80px;
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:12px; color:rgba(248,245,238,0.3);
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(30px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  @keyframes marquee {
+    from { transform:translateX(0); }
+    to   { transform:translateX(-50%); }
+  }
+  @keyframes pulse {
+    0%,100% { opacity:0.3; transform:translate(-50%,-50%) scale(1); }
+    50%      { opacity:0.6; transform:translate(-50%,-50%) scale(1.03); }
+  }
+
+  .fade-in {
+    opacity:0; transform:translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible { opacity:1; transform:translateY(0); }
+
+  @media(max-width:900px){
+    nav { padding:20px 24px; }
+    .nav-links,.nav-cta { display:none; }
+    .hero { padding:0 24px; }
+    .stats { grid-template-columns:1fr 1fr; padding:60px 24px; }
+    .section,.features,.pricing,.cta-section { padding:80px 24px; }
+    .steps { grid-template-columns:1fr; }
+    .features { grid-template-columns:1fr; }
+    .features-visual { height:400px; }
+    .cta-section { grid-template-columns:1fr; margin:0 24px 80px; }
+    footer { grid-template-columns:1fr 1fr; padding:40px 24px; }
+    .footer-bottom { padding:20px 24px; flex-direction:column; gap:10px; text-align:center; }
+    .hero-number { display:none; }
+  }
+</style>
 </head>
-
 <body>
 
-<header>
-    <h1>Vinkasa</h1>
-    <p>Micro Enterprise Registered under Udyam (MSME), Government of India</p>
-</header>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-<section>
-    <h2>About Vinkasa</h2>
-    <p>
-        Vinkasa is a proprietorship enterprise owned by Arun Jangir and registered under
-        the Udyam Registration system of the Ministry of Micro, Small and Medium Enterprises (MSME), Government of India.
-        The enterprise operates from Alwar, Rajasthan, India.
-    </p>
+<nav>
+  <a class="logo" href="#">Vin<span>kasa</span></a>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/15556395497" target="_blank">Get Started</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-tag">India's Job Visibility Platform</div>
+  <h1>Your Career,<br/><em>Seen</em> by the<br/>Right People.</h1>
+  <p class="hero-sub">Vinkasa connects ambitious job seekers directly with verified HR professionals and recruitment agencies across India — through WhatsApp.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="https://wa.me/15556395497" target="_blank">Start on WhatsApp</a>
+    <a class="btn-ghost" href="#how">See how it works</a>
+  </div>
+  <div class="hero-number">V</div>
 </section>
 
-<section>
-    <h2>Our Business Activities</h2>
-    <ul>
-        <li><strong>Dairy Manufacturing:</strong> Manufacture of cream, butter, cheese, curd, ghee, khoya and other dairy products.</li>
-        <li><strong>Employment Placement Services:</strong> Collection and processing of candidate resumes via digital platforms and facilitating job opportunities by forwarding profiles to recruitment agencies and employers.</li>
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span>Instant Profile Setup</span>
+    <span>Verified HR Network</span>
+    <span>Resume Visibility</span>
+    <span>50+ Cities</span>
+    <span>WhatsApp Native</span>
+    <span>One-Time ₹19</span>
+    <span>Instant Profile Setup</span>
+    <span>Verified HR Network</span>
+    <span>Resume Visibility</span>
+    <span>50+ Cities</span>
+    <span>WhatsApp Native</span>
+    <span>One-Time ₹19</span>
+  </div>
+</div>
+
+<section class="stats fade-in">
+  <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Cities Covered</div></div>
+  <div class="stat"><div class="stat-number">₹19</div><div class="stat-label">One-Time Fee</div></div>
+  <div class="stat"><div class="stat-number">3</div><div class="stat-label">Work Modes</div></div>
+  <div class="stat"><div class="stat-number">100%</div><div class="stat-label">WhatsApp Native</div></div>
+</section>
+
+<section class="section" id="how">
+  <div class="section-tag">The Process</div>
+  <h2 class="section-title">Three steps to <em>visibility</em></h2>
+  <div class="steps">
+    <div class="step fade-in" data-num="01">
+      <div class="step-icon">💬</div>
+      <h3>Build Your Profile</h3>
+      <p>Answer a few simple questions on WhatsApp — your name, work preference, preferred cities, and resume. Takes less than 3 minutes.</p>
+    </div>
+    <div class="step fade-in" data-num="02">
+      <div class="step-icon">🔍</div>
+      <h3>Get Discovered</h3>
+      <p>Your profile is instantly matched with verified HRs and recruitment agencies searching for talent in your preferred cities and work type.</p>
+    </div>
+    <div class="step fade-in" data-num="03">
+      <div class="step-icon">🚀</div>
+      <h3>Receive Opportunities</h3>
+      <p>Relevant recruiters reach out to you directly. No job boards to scroll. No spam. Just real opportunities from verified professionals.</p>
+    </div>
+  </div>
+</section>
+
+<div class="features fade-in" id="features">
+  <div class="features-visual">
+    <div class="glow-ring"></div>
+    <div class="glow-ring"></div>
+    <div class="glow-ring"></div>
+    <div class="phone-mock">
+      <div class="phone-top">
+        <div class="phone-wa">
+          <div class="wa-avatar">V</div>
+          <div>
+            <div class="wa-name">Vinkasa</div>
+            <div class="wa-status">● Online</div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-body">
+        <div class="msg-in">🎉 Welcome! Let's set up your profile.<br/><br/>What is your <b>full name?</b></div>
+        <div class="msg-out">Rahul Sharma</div>
+        <div class="msg-in">Nice to meet you, <b>Rahul!</b> 👋<br/><br/>What type of work are you looking for?<br/>1️⃣ WFH  2️⃣ Part Time  3️⃣ Full Time</div>
+        <div class="msg-out">1,3</div>
+        <div class="msg-in">✅ Profile ready!<br/><br/>Complete ₹19 registration:</div>
+        <div class="msg-btn">💳 Pay ₹19 Now</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="section-tag">Why Vinkasa</div>
+    <h2 class="section-title" style="margin-bottom:40px">Built for <em>real</em> job seekers</h2>
+    <div class="features-list">
+      <div class="feature-item fade-in">
+        <div class="feature-icon">📱</div>
+        <h3>100% WhatsApp Native</h3>
+        <p>No app downloads, no website accounts. Everything happens inside WhatsApp — an app you already have and trust.</p>
+      </div>
+      <div class="feature-item fade-in">
+        <div class="feature-icon">🏙️</div>
+        <h3>50+ Cities, 3 Work Modes</h3>
+        <p>Select multiple cities and work preferences. Get matched with opportunities that actually fit your lifestyle.</p>
+      </div>
+      <div class="feature-item fade-in">
+        <div class="feature-icon">🔒</div>
+        <h3>You Control Visibility</h3>
+        <p>Choose whether your resume is visible to HRs or keep it hidden. Your data, your rules.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="pricing fade-in" id="pricing">
+  <div class="section-tag" style="justify-content:center">Transparent Pricing</div>
+  <h2 class="section-title" style="margin-bottom:60px">One fee. <em>Forever visible.</em></h2>
+  <div class="price-card">
+    <div class="price-badge">One-Time Registration</div>
+    <div class="price-amount"><sup>₹</sup>19</div>
+    <p class="price-note">Pay once. Your profile stays active.</p>
+    <ul class="price-features">
+      <li>Profile visible to verified HRs nationwide</li>
+      <li>Resume uploaded & shared with recruiters</li>
+      <li>Multi-city job preference matching</li>
+      <li>WFH, Part-time & Full-time options</li>
+      <li>Resume visibility control</li>
+      <li>Instant profile activation</li>
     </ul>
+    <a class="btn-primary" href="https://wa.me/15556395497" target="_blank" style="width:100%;text-align:center;display:block">Get Started on WhatsApp</a>
+    <p class="price-disclaimer">*This platform does not guarantee job placement. Vinkasa is a visibility and discovery tool. Hiring decisions rest solely with the recruiter or employer. The ₹19 fee is non-refundable.</p>
+  </div>
 </section>
 
-<section>
-    <h2>Privacy & Data Protection</h2>
-    <p>
-        We respect individual privacy and are committed to protecting personal information.
-        Candidate data collected through our services is used strictly for employment-related purposes
-        and may be shared with recruitment partners for job placement.
-    </p>
-    <p>
-        For complete details, please review our Privacy Policy.
-    </p>
-    <a href="privacy.html" class="btn">View Privacy Policy</a>
-</section>
+<div class="cta-section fade-in">
+  <div>
+    <h2>Ready to be <em>discovered</em> by the right HR?</h2>
+    <p>Join thousands of job seekers across India who've made their profile visible to verified recruiters in under 3 minutes.</p>
+  </div>
+  <div>
+    <a class="btn-primary" href="https://wa.me/15556395497" target="_blank">Open WhatsApp →</a>
+  </div>
+</div>
 
-<section>
-    <h2>Contact Information</h2>
-    <p><strong>Enterprise Name:</strong> Vinkasa</p>
-    <p><strong>Proprietor:</strong> Arun Jangir</p>
-    <p><strong>Location:</strong> Alwar, Rajasthan, India</p>
-    <p><strong>Email:</strong> ajarun2786@gmail.com</p>
-</section>
-
-<footer>
-    © 2026 Vinkasa. All Rights Reserved.
+<footer id="contact">
+  <div class="footer-brand">
+    <a class="logo" href="#">Vin<span>kasa</span></a>
+    <p>India's WhatsApp-native job visibility platform. Connecting talent with opportunity — simply, securely, and affordably.</p>
+    <div style="margin-top:24px;font-size:12px;color:rgba(248,245,238,0.3)">
+      <div>Proprietor: Arun Jangir</div>
+      <div>Alwar, Rajasthan, India</div>
+      <div style="margin-top:8px"><a href="mailto:ajarun2786@gmail.com" style="color:var(--gold);text-decoration:none">ajarun2786@gmail.com</a></div>
+    </div>
+  </div>
+  <div class="footer-col">
+    <h4>Platform</h4>
+    <ul>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="https://wa.me/15556395497" target="_blank">WhatsApp Bot</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Legal</h4>
+    <ul>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms & Conditions</a></li>
+      <li><a href="delete.html">Data Deletion</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Contact</h4>
+    <ul>
+      <li><a href="mailto:ajarun2786@gmail.com">Email Us</a></li>
+      <li><a href="https://wa.me/15556395497" target="_blank">WhatsApp</a></li>
+    </ul>
+  </div>
 </footer>
+<div class="footer-bottom">
+  <span>© 2025 Vinkasa. All rights reserved. Proprietor: Arun Jangir, Alwar, Rajasthan.</span>
+  <span>Made in India 🇮🇳</span>
+</div>
 
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx-5+'px';
+    cursor.style.top  = my-5+'px';
+  });
+  function animRing(){
+    rx += (mx-rx-18)*0.12;
+    ry += (my-ry-18)*0.12;
+    ring.style.left = rx+'px';
+    ring.style.top  = ry+'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ cursor.style.transform='scale(2.5)'; ring.style.transform='scale(1.5)'; ring.style.opacity='1'; });
+    el.addEventListener('mouseleave',()=>{ cursor.style.transform='scale(1)'; ring.style.transform='scale(1)'; ring.style.opacity='0.6'; });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); }
+    });
+  },{threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script>
 </body>
 </html>
